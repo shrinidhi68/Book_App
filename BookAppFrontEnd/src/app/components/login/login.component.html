@@ -1,0 +1,98 @@
+<app-navbar></app-navbar>
+<div class="bootstrap-wrapper">
+  <div class="container mt">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="container text-center">
+          <img
+            class="image-fluid"
+            style="width: 100px"
+            src="/assets/flip.gif"
+            alt=""
+          />
+        </div>
+        <h1 class="text-center">Login here</h1>
+
+        <!-- form-->
+        <form class="solid" #loginform="ngForm" (ngSubmit)="loginUser()">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input
+              type="email"
+              id="email"
+              name="emailid"
+              placeholder="Enter email address"
+              [(ngModel)]="user.email"
+              #email="ngModel"
+              [class.is-invalid]="email.invalid && email.touched"
+              required
+              matInput
+            />
+          </mat-form-field>
+
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter password"
+              required
+              #password="ngModel"
+              [(ngModel)]="user.password"
+              [class.is-invalid]="password.invalid && password.touched"
+              matInput
+            />
+          </mat-form-field>
+
+          <div class="container text-center">
+            <button
+              type="button"
+              mat-raised-button
+              color="primary"
+              (click)="loginUser()"
+              [disabled]="loginform.invalid"
+            >
+              Login
+            </button>
+
+            <button
+              style="margin-left: 10px"
+              type="reset"
+              mat-raised-button
+              color="accent"
+            >
+              Reset
+            </button>
+          </div>
+          <br />
+
+          <hr style="border-top: 5px dotted" />
+
+          <div class="text-center">
+            <h3 style="font-weight: bold">OR SIGN IN USING</h3>
+          </div>
+          <div class="text-center">
+            <a routerLink="www.facebook.com" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-google"></a>
+
+            <hr style="border-top: 5px dotted" />
+            <br />
+            <span style="font-weight: bold; font-size: 16px">
+              New to the app?
+            </span>
+            <a
+              routerLink="/register"
+              style="font-weight: bold; font-size: 16px"
+            >
+              Register</a
+            >
+          </div>
+        </form>
+        <br />
+        <!--   <p class="mt">   {{user | json}} </p>  -->
+      </div>
+    </div>
+  </div>
+</div>

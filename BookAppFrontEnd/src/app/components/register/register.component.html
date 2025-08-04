@@ -1,0 +1,103 @@
+<div class="bootstrap-wrapper">
+  <div class="container mt">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="container text-center">
+          <img
+            class="image-fluid"
+            style="width: 100px"
+            src="/assets/login logo.png"
+            alt=""
+          />
+        </div>
+        <h1 class="text-center">Register here</h1>
+
+        <!-- form-->
+        <form class="solid" #loginform="ngForm">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>User Name</mat-label>
+            <input
+              required
+              type="text"
+              [(ngModel)]="user.userName"
+              name="username"
+              #username="ngModel"
+              [class.is-invalid]="username.invalid && username.touched"
+              required
+              matInput
+            />
+          </mat-form-field>
+
+          
+          
+                      
+
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Email Address</mat-label>
+            <input
+              required
+              type="email"
+              [(ngModel)]="user.email"
+              #email="ngModel"
+              name="email"
+              [class.is-invalid]="email.invalid && email.touched"
+              required
+              
+              matInput
+            />
+          </mat-form-field> 
+
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>PassWord</mat-label>
+            <input
+              required
+              type="password"
+              #password="ngModel"
+              [(ngModel)]="user.password"
+              name="password"
+              [class.is-invalid]="password.invalid && password.touched"
+              matInput
+            />
+          </mat-form-field>
+          <br />
+          <hr style="border-top: 5px dotted" />
+          <br />
+          <div class="text-center">
+            <h3 style="font-weight: bold">OR SIGN IN USING</h3>
+          </div>
+          <div class="text-center">
+            <a routerLink="www.facebook.com" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-google"></a>
+          </div>
+          <br />
+          <div
+            class="text-center"
+            style="
+              margin-bottom: 20px;
+              font-family: 'Times New Roman', Times, serif;
+              font-weight: bolder;
+              font-size: 14px;
+            "
+          >
+            <input type="checkbox" />
+            <label> I AM NOT A ROBOT</label><br />
+          </div>
+
+          <div class="container text-center">
+            <button
+              type="submit"
+              mat-raised-button
+              color="primary"
+              (click)="registeruser();saveuser();"
+              
+            >
+              Submit Details
+            </button>
+          </div>
+        </form>
+        <br />
+      </div>
+    </div>
+  </div>
+</div>

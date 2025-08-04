@@ -1,0 +1,12 @@
+.full-width{
+    width:100%;
+}
+
+
+
+.solid{
+    border-style: solid;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: floralwhite;
+}

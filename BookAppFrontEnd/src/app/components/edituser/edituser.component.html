@@ -1,0 +1,83 @@
+<app-navbar></app-navbar>
+<div class="bootstrap-wrapper">
+  <div class="container mt">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="container text-center">
+          <img
+            class="image-fluid"
+            style="width: 100px"
+            src="/assets/settings.webp"
+            alt=""
+          />
+        </div>
+        <h1 class="text-center">Edit your details here</h1>
+
+        <!-- form-->
+        <form class="solid">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Enter your UserName</mat-label>
+            <input
+              type="text"
+              id="username"
+              name="Username"
+              placeholder="UserName"
+              [(ngModel)]="userPassChange.userName"
+              required
+              matInput
+            />
+          </mat-form-field>
+
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Enter current password</mat-label>
+            <input
+              type="oldPassword"
+              id="oldPassword"
+              name="oldPassword"
+              placeholder="Enter Old password"
+              [(ngModel)]="userPassChange.oldPassword"
+              required
+              matInput
+            />
+          </mat-form-field>
+
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Enter new password</mat-label>
+            <input
+              type="newPassword"
+              id="newPassword"
+              name="newPassword"
+              placeholder="Enter New password"
+              [(ngModel)]="userPassChange.newPassword"
+              required
+              matInput
+            />
+          </mat-form-field>
+
+          <div class="container text-center">
+            <button
+              type="submit"
+              mat-raised-button
+              color="primary"
+              (click)="editPassword()"
+            >
+              Save changes
+            </button>
+
+            <button
+              style="margin-left: 10px"
+              type="reset"
+              mat-raised-button
+              color="accent"
+            >
+              Cancel
+            </button>
+          </div>
+          <br />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--   <p class="mt">   {{user | json}} </p>  -->

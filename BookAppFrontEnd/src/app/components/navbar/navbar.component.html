@@ -1,0 +1,48 @@
+<mat-toolbar class="mat-elevation-z8 header">
+  <span
+    ><img src="assets/flip.gif" alt="" height="40px;" />
+    <span style="color: rgb(255, 235, 205)">Book App </span></span
+  >
+
+  <div class="spacer"></div>
+
+  
+  <a
+    mat-raised-button
+    color="cyan"
+    style="margin-right: 14px"
+    routerLink="home"
+    *ngIf="!logIn"
+  >
+    HOME</a
+  >
+  <a
+    mat-raised-button
+    color="cyan"
+    style="margin-right: 14px"
+    routerLink="login"
+    *ngIf="!logIn"
+  >
+    Sign In</a
+  >
+
+  <a
+    mat-raised-button
+    color="cyan"
+    style="margin-right: 14px"
+    routerLink="register"
+    *ngIf="!logIn"
+    >Sign Up</a
+  >
+ 
+ 
+  <a
+    mat-raised-button
+    color="cyan"
+    style="margin-right: 14px"
+    *ngIf="logIn"
+    (click)="looutCick()"
+  >
+    Log Out</a
+  >
+</mat-toolbar>

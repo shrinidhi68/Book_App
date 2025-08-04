@@ -1,0 +1,50 @@
+.hero-text {
+    text-align: right;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    color: blanchedalmond;
+  }
+
+  .container1 {
+    border: 2px solid #ccc;
+    background-color: #eee;
+    border-radius: 5px;
+    padding: 16px;
+    margin: 16px 0;
+  }
+  
+  /* Clear floats after containers */
+  .container1::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  /* Float images inside the container to the left. Add a right margin, and style the image as a circle */
+  .container1 img {
+    float: left;
+    margin-right: 20px;
+    border-radius: 50%;
+    height: 200px;
+  }
+  
+  /* Increase the font-size of a span element */
+  .container1 span {
+    font-size: 20px;
+    margin-right: 15px;
+  }
+  
+  /* Add media queries for responsiveness. This will center both the text and the image inside the container */
+  @media (max-width: 500px) {
+    .container {
+      text-align: center;
+    }
+  
+    .container1 img {
+      margin: auto;
+      float: none;
+      display: block;
+    }
+  }
