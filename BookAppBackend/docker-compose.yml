@@ -73,8 +73,7 @@ services:
       EUREKA_SERVER_PORT: 8761
     depends_on:
       - eurekaServer
-
-
+      
   eurekaServer:
     image: eureka-service
     build: EurekaServer/
