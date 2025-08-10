@@ -33,7 +33,7 @@ public class JwtFilter extends GenericFilterBean {
         String token = authHeader.substring(7);//Bearer => 6+1 = 7, since token begins with Bearer
 
         //token validation
-        Claims claims = Jwts.parser().setSigningKey("mysecret").parseClaimsJws(token).getBody();
+        Claims claims = (Claims) Jwts.parser().build();
         request.setAttribute("claims",claims);
 
         //pass the claims in the request, anyone wanting to
