@@ -46,14 +46,15 @@ private UserRepository userRepository;
     }
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		
+		System.out.println(username+" "+"12");
 		User user= userRepository.findByEmail(username);
 		if(user==null) {
+
 			throw new UsernameNotFoundException("user not found");
 		}
 	
 		return org.springframework.security.core.userdetails.User.builder()
-				.username(user.getUserName())
+				.username(user.getEmail())
 				.password(user.getPassword())
 				.roles("user")
 				.build();

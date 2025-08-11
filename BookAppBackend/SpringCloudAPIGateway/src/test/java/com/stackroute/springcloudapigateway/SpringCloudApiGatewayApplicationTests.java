@@ -1,13 +1,12 @@
-package com.stackroute.springcloudapigateway;
-
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
-//@SpringBootTest
-class SpringCloudApiGatewayApplicationTests {
-
+//package com.stackroute.springcloudapigateway;
+//
+//
+//
+//@SpringBootT
+//class SpringCloudApiGatewayApplicationTests {
+//
 //	@Test
 //	void contextLoads() {
 //	}
-
-}
+//
+//}

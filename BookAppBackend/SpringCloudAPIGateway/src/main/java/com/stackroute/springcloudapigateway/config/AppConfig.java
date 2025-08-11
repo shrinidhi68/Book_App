@@ -1,6 +1,6 @@
 package com.stackroute.springcloudapigateway.config;
 
-import com.stackroute.springcloudapigateway.filter.JwtFilter;
+
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
@@ -31,13 +31,13 @@ public class AppConfig {
     }
     
     
-    @Bean
-    public FilterRegistrationBean jwtFilterBean(){
-        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
-        filterRegistrationBean.setFilter(new JwtFilter());
-        filterRegistrationBean.addUrlPatterns("/api/v2/user/*");
-        return filterRegistrationBean;
-    }
+//    @Bean
+//    public FilterRegistrationBean jwtFilterBean(){
+//        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+//        filterRegistrationBean.setFilter(new JwtFilter());
+//        filterRegistrationBean.addUrlPatterns("/api/v2/user/*");
+//        return filterRegistrationBean;
+//    }
 }
 
 
