@@ -1,43 +1,53 @@
 //package com.stackroute.springcloudapigateway.filter;
 //
+//import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+//import org.springframework.cloud.gateway.filter.GlobalFilter;
+//import org.springframework.http.HttpHeaders;
+//import org.springframework.http.HttpStatus;
+//import org.springframework.security.oauth2.jwt.JwtException;
+//import org.springframework.stereotype.Component;
+//import org.springframework.web.server.ServerWebExchange;
+//
 //import io.jsonwebtoken.Claims;
 //import io.jsonwebtoken.Jwts;
-//import org.springframework.web.filter.GenericFilterBean;
+//import io.jsonwebtoken.security.Keys;
+//import reactor.core.publisher.Mono;
 //
-//import javax.servlet.FilterChain;
-//import javax.servlet.ServletException;
-//import javax.servlet.ServletRequest;
-//import javax.servlet.ServletResponse;
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
-//import java.io.IOException;
+//@Component
+//public class JwtFilter implements GlobalFilter {
 //
-//public class JwtFilter extends GenericFilterBean {
+//    private final String secret = "my-secret-key";
+//
 //    @Override
-//    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-//        HttpServletRequest request = (HttpServletRequest) servletRequest;
-//        HttpServletResponse response = (HttpServletResponse) servletResponse;
+//    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+//    	
+//        String authHeader = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
 //
-//        //expects the token to come from the header
-//        final String authHeader = request.getHeader("Authorization");
-//        if(request.getMethod().equals("OPTIONS")){
-//            //if the method is options the request can pass through not validation of token is required
-//            response.setStatus(HttpServletResponse.SC_OK);
-//            filterChain.doFilter(request,response);
+//        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+//            String token = authHeader.substring(7);
+//            try {
+//                Claims claims = Jwts.parser()
+//                        .setSigningKey(Keys.hmacShaKeyFor(secret.getBytes()))
+//                        .build()
+//                        .parseClaimsJws(token)
+//                        .getBody();
+//
+//                exchange = exchange.mutate().request(r -> r
+//                        .headers(h -> {
+//                            h.add("X-User-Id", claims.getSubject());
+//                            h.add("X-User-Roles", claims.get("roles").toString());
+//                        })
+//                ).build();
+//
+//            } catch (JwtException e) {
+//                exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+//                return exchange.getResponse().setComplete();
+//            }
+//        } else {
+//            exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+//            return exchange.getResponse().setComplete();
 //        }
-//        else if(authHeader == null || !authHeader.startsWith("Bearer "))
-//        {
-//            throw new ServletException("Missing or Invalid Token");
-//        }
-//        //extract token from the header
-//        String token = authHeader.substring(7);//Bearer => 6+1 = 7, since token begins with Bearer
 //
-//        //token validation
-//        Claims claims = (Claims) Jwts.parser().build();
-//        request.setAttribute("claims",claims);
-//
-//        //pass the claims in the request, anyone wanting to
-//
-//        filterChain.doFilter(request,response);
+//        return chain.filter(exchange);
 //    }
 //}

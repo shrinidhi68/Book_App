@@ -24,12 +24,12 @@ import io.jsonwebtoken.security.Keys;
 @Service
 public class JWTSecurityTokenGeneratorImpl implements SecurityTokenGenerator {
 	
-	private String secretKey="";
+	private String secretKey="sdhbadjsahfjndjvb489394732y5893264qwndmsanoiDUHQ98472190RIO3NOCH39YC83URFIOEJHRF893Y89RY3892WQR2";
 
 	public JWTSecurityTokenGeneratorImpl() throws NoSuchAlgorithmException {
-		KeyGenerator keygen=KeyGenerator.getInstance("HmacSHA256");
-		SecretKey s=keygen.generateKey();
-		secretKey=Base64.getEncoder().encodeToString(s.getEncoded());
+//		KeyGenerator keygen=KeyGenerator.getInstance("HmacSHA256");
+//		SecretKey s=keygen.generateKey();
+		secretKey=Base64.getEncoder().encodeToString(secretKey.getBytes());
 		
 	}
 	
