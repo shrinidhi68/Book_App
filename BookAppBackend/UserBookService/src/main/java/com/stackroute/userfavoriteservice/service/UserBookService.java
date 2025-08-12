@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface UserBookService {
 User registerUser(User user) throws UserAlreadyExistsException;
-User saveUserFavBookt(Favorite favorite,String email) throws UserNotFoundException;
+User saveUserFavBook(Favorite favorite,String email) throws UserNotFoundException;
 User deleteUserFavBookFromList(String email,String favUrl) throws UserNotFoundException, BookNotFoundException;
 List<Favorite> getAllUserFavBooks(String email) throws UserNotFoundException;
 }

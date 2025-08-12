@@ -31,13 +31,13 @@ public class UserBookServiceImpl implements UserBookService{
     }
 
     @Override
-    public User saveUserFavBookt(Favorite favorite, String email) throws UserNotFoundException {
-    	System.out.println(favorite);
-        if(userBookRepository.findById(email).isEmpty())
+    public User saveUserFavBook(Favorite favorite, String email) throws UserNotFoundException {
+    	 User user = userBookRepository.findByEmail(email);
+        if(user==null)
         {
             throw new UserNotFoundException();
         }
-        User user = userBookRepository.findByEmail(email);
+       
         if(user.getFavBookList() == null)
         {
             user.setFavBookList(Arrays.asList(favorite));

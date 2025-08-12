@@ -1,8 +1,9 @@
 package com.stackroute.userfavoriteservice.repository;
 
-import com.stackroute.userfavoriteservice.domain.User;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserBookRepository extends MongoRepository<User,String> {
+import com.stackroute.userfavoriteservice.domain.User;
+
+public interface UserBookRepository extends JpaRepository<User,String> {
     User findByEmail(String email);
 }

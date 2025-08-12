@@ -21,7 +21,6 @@ import com.stackroute.userauthenticationservice.security.SecurityTokenGenerator;
 import com.stackroute.userauthenticationservice.service.UserService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1")
 public class UserController {
 	

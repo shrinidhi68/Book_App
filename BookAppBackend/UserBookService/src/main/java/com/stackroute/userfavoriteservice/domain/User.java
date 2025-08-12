@@ -1,15 +1,22 @@
 package com.stackroute.userfavoriteservice.domain;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.util.List;
-@Document
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+
+@Entity
 public class User {
+	
     @Id
     private String email;
     private String userName;
     private String password;
+    
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Favorite> favBookList;
 
     public User() {

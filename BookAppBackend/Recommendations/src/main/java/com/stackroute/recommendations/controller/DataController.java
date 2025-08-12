@@ -14,7 +14,6 @@ import com.stackroute.recommendations.service.BookService;
 
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
 @RequestMapping("/api/v3/books")
 public class DataController {
   private final BookService bookService;
@@ -25,18 +24,18 @@ public class DataController {
   }
 
   @GetMapping(value={"", "/recomended"})
-  public ResponseEntity recomended(){
+  public ResponseEntity<?> recomended(){
       var output = bookService.consumeApi("https://openlibrary.org/trending/daily.json?limit=10");
     return ResponseEntity.status(HttpStatus.OK).body(output);
   }
 
   @GetMapping(value={"", "/search"})
-  public ResponseEntity search(@RequestParam(value = "q") String q){
+  public ResponseEntity<?> search(@RequestParam(value = "q") String q){
     var output = bookService.consumeApi("https://openlibrary.org/search.json?q="+q+"&limit=10");
     return ResponseEntity.status(HttpStatus.OK).body(output);
   }
   @GetMapping(value={"", "/search-author"})
-  public ResponseEntity authors(@RequestParam(value = "q") String q){
+  public ResponseEntity<?> authors(@RequestParam(value = "q") String q){
     var output = bookService.consumeApi("https://openlibrary.org/search.json?author="+q);
     return ResponseEntity.status(HttpStatus.OK).body(output);
   }
