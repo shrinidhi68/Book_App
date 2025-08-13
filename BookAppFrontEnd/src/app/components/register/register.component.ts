@@ -16,20 +16,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  registeruser(){
-    this.rls.registerUserfromBackend(this.user).subscribe(
-      response=>{
-        console.log(response);
-        
-        
-      },
-      error=>{
-        console.log(error);
-        this.message = 'Invalid Credentials Try Again';
-        alert('Sorry, register unsuccesful');
-      }
-    )
-  }
+  
   saveuser(){
     this.rls.registerUsersfromBackend(this.user).subscribe(
       response=>{

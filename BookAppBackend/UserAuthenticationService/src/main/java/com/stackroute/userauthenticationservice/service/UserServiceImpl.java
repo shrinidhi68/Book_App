@@ -23,11 +23,9 @@ private UserRepository userRepository;
     }
     @Override
     public User saveUser(User user) throws UserAlreadyExistsException {
-        if(userRepository.findById(user.getEmail()).isPresent())
-        {
-            throw new UserAlreadyExistsException();
+        if (userRepository.findById(user.getEmail()).isPresent()) {
+            throw new UserAlreadyExistsException("User with email " + user.getEmail() + " already exists.");
         }
-        System.out.println(user);
         return userRepository.save(user);
     }
 

@@ -1,5 +1,7 @@
 package com.stackroute.userauthenticationservice.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,7 +9,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,7 +42,8 @@ public class UserController {
 	@PostMapping("/user")
 	public ResponseEntity<?> saveUser(@RequestBody User user) throws UserAlreadyExistsException {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		return new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);
+		User us=userService.saveUser(user);
+		return new ResponseEntity<>(us, HttpStatus.CREATED);
 	}
 
 	@PostMapping("/login")
@@ -54,8 +56,8 @@ public class UserController {
         {
             throw new InvalidCredentialsException();
         }
-        securityTokenGenerator.generateToken(user);
-        return ResponseEntity.ok(securityTokenGenerator.generateToken(user));
+      Map<String, String> m  =securityTokenGenerator.generateToken(user);
+        return ResponseEntity.ok(m);
     }
 	
 	@GetMapping("/test")

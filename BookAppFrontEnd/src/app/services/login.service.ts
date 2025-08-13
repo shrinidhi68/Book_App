@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import { userEditPassword, userinfo } from 'src/app/model/userinfo';
 import { Fav } from 'src/app/model/db';
 import { userauth } from 'src/app/model/userauth';
-
+import { Variable } from '@angular/compiler/src/render3/r3_ast';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -16,19 +17,19 @@ export class LoginService {
     return this.http.post('http://localhost:9000/api/v1/login', user);
     
   }
-  
-  public registerUserfromBackend(user: userinfo): Observable<any> {
-    return this.http.post('http://localhost:9000/api/v2/register', user);
-  }
   public registerUsersfromBackend(user: userinfo): Observable<any> {
     return this.http.post('http://localhost:9000/api/v1/user', user);
   }
   public addFavoritefromBackend(favorite:Fav,user:userauth): Observable<any> {
     return this.http.post('http://localhost:9000/api/v2/user/favorite/'+localStorage.getItem('email'), favorite);
   }
-  public deleteFavoritefromBackend(favorite:Fav) {
-    return this.http.delete('http://localhost:9000/api/v2/user/'+JSON.stringify(localStorage.getItem('email'))+'/'+favorite.favUrls);
-  }
+  public deleteFavoritefromBackend(favorite: string) {
+  const params = new HttpParams().set('favorite', favorite);
+  return this.http.delete(
+    'http://localhost:9000/api/v2/user/' + localStorage.getItem('email'),
+    { params }
+  );
+}
   public getFavoritefromBackend():Observable<any> {
     return this.http.get('http://localhost:9000/api/v2/user/favorites/'+localStorage.getItem('email'));
   }

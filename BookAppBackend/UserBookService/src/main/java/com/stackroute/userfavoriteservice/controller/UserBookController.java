@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stackroute.userfavoriteservice.domain.Favorite;
@@ -42,9 +43,8 @@ private ResponseEntity<?> responseEntity;
     @PostMapping("/user/favorite/{email}")
     public ResponseEntity<?> saveUserBookToList(@RequestBody Favorite favorite, @PathVariable String email) throws UserNotFoundException {
     try {
-    	Favorite f=favorite;
-    	f.setFavUrl(favorite.getFavUrl().substring(2,favorite.getFavUrl().length()-2));
-        responseEntity = new ResponseEntity<>(userBookService.saveUserFavBook(f, email), HttpStatus.CREATED);
+    	
+        responseEntity = new ResponseEntity<>(userBookService.saveUserFavBook(favorite, email), HttpStatus.CREATED);
     }
     catch (UserNotFoundException e)
     {
@@ -62,12 +62,12 @@ private ResponseEntity<?> responseEntity;
     }
        return responseEntity;
     }
-    @DeleteMapping("/user/{email}/{favUrl}")
-    public ResponseEntity<?> deleteUserBookFromList(@PathVariable String email,@PathVariable String favUrl)
+    @DeleteMapping("/user/{email}")
+    public ResponseEntity<?> deleteUserBookFromList(@PathVariable String email,@RequestParam String favorite)
             throws UserNotFoundException, BookNotFoundException
     {
         try {
-            responseEntity = new ResponseEntity<>(userBookService.deleteUserFavBookFromList(email,favUrl ), HttpStatus.OK);
+            responseEntity = new ResponseEntity<>(userBookService.deleteUserFavBookFromList(email,favorite), HttpStatus.OK);
         } catch (UserNotFoundException | BookNotFoundException m) {
             throw new BookNotFoundException();
         }

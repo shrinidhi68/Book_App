@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
     this.service.getFavoritefromBackend().subscribe(
       (response) => {
         console.log(response);
-        this.favBookData=response;
+        this.favBookData=response
        
         }
        
@@ -54,34 +54,24 @@ export class DashboardComponent implements OnInit {
   Fav :any;
   user = new userauth();
   addFavoriteData(url: any) {
-    console.log(url);
-    const getLocalData: any = localStorage.getItem('favorite');
-    console.log(getLocalData);
-    // convrt string to json
-    var setLocalData = JSON.parse(getLocalData);
-    setLocalData.push(url);
-    setLocalData = [...new Set(setLocalData)];
-    this.favBookData = setLocalData;
-    localStorage.setItem('favorite', JSON.stringify(setLocalData));
-    this.Fav=new Fav(JSON.stringify(setLocalData));
+
+    this.Fav=new Fav(JSON.stringify(url.favUrl));
+ 
     this.service.addFavoritefromBackend(this.Fav,this.user).subscribe(
       (response) => {
         console.log(response);
         
       },
       (error) => {
-        console.log(error);
+        console.log(error); 
        
       }
     );
   }
   removeFavoriteData(url: any) {
-    const getLocalData: any = localStorage.getItem('favorite');
-    const setLocalData = JSON.parse(getLocalData).filter((e: any) => e != url);
-    this.favBookData = setLocalData;
-    localStorage.setItem('favorite', JSON.stringify(setLocalData));
-    this.Fav=new Fav(JSON.stringify(url));
-    this.service.deleteFavoritefromBackend(this.Fav).subscribe(
+    
+    
+    this.service.deleteFavoritefromBackend(url).subscribe(
       (response) => {
         console.log(response);
         

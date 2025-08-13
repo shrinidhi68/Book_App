@@ -93,11 +93,11 @@
     >
       <div class="book-card-fav" *ngFor="let obj of favBookData">
         <img
-        [src]="obj"
+        [src]="obj.favUrl"
         style="height: 300px; "
         
       /> 
-        <div class="add-rem" (click)="removeFavoriteData(obj)">remove</div>
+        <div class="add-rem" (click)="removeFavoriteData(obj.favUrl)">remove</div>
   
     <hr />
     <hr />

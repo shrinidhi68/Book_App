@@ -53,10 +53,13 @@ public class UserBookServiceImpl implements UserBookService{
     @Override
     public User deleteUserFavBookFromList(String email, String favUrl) throws  BookNotFoundException {
         boolean favUrlIsPresent = false;
+        System.out.println(favUrl);
         System.out.println(email);
         User user = userBookRepository.findById(email).get();
         List<Favorite> favorites = user.getFavBookList();
+        favorites.forEach(s->System.out.println(s.getFavUrl()));
         favUrlIsPresent = favorites.removeIf(x->x.getFavUrl().equals(favUrl));
+       
         if(!favUrlIsPresent)
         {
             throw new BookNotFoundException();
