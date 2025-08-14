@@ -55,11 +55,20 @@ export class DashboardComponent implements OnInit {
   user = new userauth();
   addFavoriteData(url: any) {
 
-    this.Fav=new Fav(JSON.stringify(url.favUrl));
- 
+    this.Fav=new Fav(JSON.stringify(url));
+    
     this.service.addFavoritefromBackend(this.Fav,this.user).subscribe(
       (response) => {
         console.log(response);
+        this.service.getFavoritefromBackend().subscribe(
+      (response) => {
+        console.log(response);
+        this.favBookData=response
+       
+        }
+       
+      );
+    
         
       },
       (error) => {
@@ -67,6 +76,7 @@ export class DashboardComponent implements OnInit {
        
       }
     );
+  
   }
   removeFavoriteData(url: any) {
     
@@ -74,6 +84,14 @@ export class DashboardComponent implements OnInit {
     this.service.deleteFavoritefromBackend(url).subscribe(
       (response) => {
         console.log(response);
+         this.service.getFavoritefromBackend().subscribe(
+      (response) => {
+        console.log(response);
+        this.favBookData=response
+       
+        }
+       
+      );
         
       },
       (error) => {

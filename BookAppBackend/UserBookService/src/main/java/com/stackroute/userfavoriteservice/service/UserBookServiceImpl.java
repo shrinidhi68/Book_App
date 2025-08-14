@@ -33,6 +33,7 @@ public class UserBookServiceImpl implements UserBookService{
     @Override
     public User saveUserFavBook(Favorite favorite, String email) throws UserNotFoundException {
     	 User user = userBookRepository.findByEmail(email);
+    	 favorite.setFavUrl(favorite.getFavUrl().substring(1,favorite.getFavUrl().length()-1));
         if(user==null)
         {
             throw new UserNotFoundException();
